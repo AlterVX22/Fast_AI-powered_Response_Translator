@@ -1,2 +1,2 @@
-# Fast_AI-powered_Response_Translator
+# Читай МЕНЯ
 FART -  Fast AI-powered Response Translator
