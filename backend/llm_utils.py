@@ -43,7 +43,7 @@ def generate_itmo_response():
             model=DEFAULT_MODEL,
             messages=[
                 {"role": "system", "content": "Ты имитируешь преподавателя ИТМО, который отменяет пары."},
-                {"role": "user", "content": f"Придумай краткую причину отмены пар абсурдную, похожую на эти примеры: {', '.join(CANCELLATION_REASONS)}. Только саму причину, без приветствий."}
+                {"role": "user", "content": f"Придумай краткую и абсурдную причину отмены пар, похожую на эти примеры: {', '.join(CANCELLATION_REASONS)}. Только саму причину, без приветствий."}
             ],
             headers={
                 "HTTP-Referer": "http://localhost:8000",
