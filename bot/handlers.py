@@ -14,9 +14,8 @@ DEFAULT_MODEL = "mistralai/mistral-7b-instruct:free"
 (
     STATE_SELECT_INPUT_LANG,
     STATE_SELECT_OUTPUT_LANG,
-    STATE_ENTER_TEXT,
-    STATE_ENTER_ITMO_TEXT 
-) = range(4)
+    STATE_ENTER_TEXT
+) = range(3)
 
 LANGUAGES = {
     "🇬🇧 Английский": "English",
@@ -79,28 +78,17 @@ async def help_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 
 async def itmo_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    if update.message:
-        await delete_message_with_animation(context, update.message.chat_id, update.message.message_id - 1)
-    
-    await update.message.reply_text(
-        "Введите текст, который хотите 'перевести' на ИТМОшный (это может быть любое предложение, например 'Сегодня будет пара')",
-        reply_markup=ReplyKeyboardRemove()
-    )
-    return STATE_ENTER_ITMO_TEXT
-
-
-async def handle_itmo_text(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    user_text = update.message.text.strip()
-    context.user_data["itmo_text"] = user_text
-    
-    buttons = [[InlineKeyboardButton("Оставь надежду, всяк сюда входящий.", callback_data="output_itmo")]]
+    buttons = [[InlineKeyboardButton("Оставь надежду, всяк сюда входящий", callback_data="output_itmo")]]
     reply_markup = InlineKeyboardMarkup(buttons)
     
     await update.message.reply_text(
-        "Теперь нажмите кнопку для перевода",
+        "Нажмите кнопку ниже, чтобы узнать, почему сегодня не будет пар:",
         reply_markup=reply_markup
     )
     return STATE_SELECT_OUTPUT_LANG
+
+async def handle_itmo_text(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    pass
 
 
 async def handle_text(update: Update, context: ContextTypes.DEFAULT_TYPE):

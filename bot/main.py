@@ -7,7 +7,7 @@ from telegram.ext import (
 )
 from bot.handlers import (
     start, help_command, handle_text, handle_language_selection,handle_itmo_text,
-    itmo_command, STATE_SELECT_OUTPUT_LANG, STATE_ENTER_TEXT, STATE_ENTER_ITMO_TEXT
+    itmo_command, STATE_SELECT_OUTPUT_LANG, STATE_ENTER_TEXT,
 )
 
 load_dotenv()
@@ -33,9 +33,6 @@ def main():
             ],
             STATE_ENTER_TEXT: [
                 MessageHandler(filters.TEXT & (~filters.COMMAND), handle_text)
-            ],
-            STATE_ENTER_ITMO_TEXT: [  # Добавляем новое состояние
-                MessageHandler(filters.TEXT & (~filters.COMMAND), handle_itmo_text)
             ],
         },
         fallbacks=[

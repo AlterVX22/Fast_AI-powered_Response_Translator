@@ -12,7 +12,7 @@ openai.api_key = os.getenv("OPENROUTER_API_KEY")
 
 DEFAULT_MODEL = "mistralai/mistral-7b-instruct:free"
 
-# Причины отмены пар (перенесены из handlers.py)
+# Причины отмены пар
 CANCELLATION_REASONS = [
     "Ровно в это время поставили отчет по проекту ((",
     "Ребята, я заболел, завтра занятия не будет :(",
@@ -43,7 +43,7 @@ def generate_itmo_response():
             model=DEFAULT_MODEL,
             messages=[
                 {"role": "system", "content": "Ты имитируешь преподавателя ИТМО, который отменяет пары."},
-                {"role": "user", "content": f"Придумай краткую причину отмены пар немного абсурдную, похожую на эти примеры: {', '.join(CANCELLATION_REASONS)}. Только саму причину, без приветствий."}
+                {"role": "user", "content": f"Придумай краткую причину отмены пар абсурдную, похожую на эти примеры: {', '.join(CANCELLATION_REASONS)}. Только саму причину, без приветствий."}
             ],
             headers={
                 "HTTP-Referer": "http://localhost:8000",
